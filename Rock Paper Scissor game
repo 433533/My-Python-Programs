@@ -1,0 +1,42 @@
+import random
+
+def determine_winner(user_choice, computer_choice):
+    if user_choice == computer_choice:
+        return "It's a tie!"
+    elif (user_choice == 1 and computer_choice == 3) or \
+         (user_choice == 2 and computer_choice == 1) or \
+         (user_choice == 3 and computer_choice == 2):
+        return "You win!"
+    else:
+        return "You lose!"
+
+def main():
+    print("Welcome to Rock, Paper, Scissors Game!")
+    user_score = 0
+    computer_score = 0
+    
+    while True:
+        user_choice = input("Choose rock (1), paper (2), or scissors (3) (or 'q' to quit): ")
+        if user_choice == 'q':
+            print("Thank you for playing. Final scores: You {}, Computer {}".format(user_score, computer_score))
+            break
+        
+        if user_choice not in ['1', '2', '3']:
+            print("Invalid choice. Please choose 1 for rock, 2 for paper, or 3 for scissors.")
+            continue
+        
+        user_choice = int(user_choice)
+        computer_choice = random.randint(1, 3)
+        print("You chose:", user_choice)
+        print("Computer chose:", computer_choice)
+        
+        result = determine_winner(user_choice, computer_choice)
+        print(result)
+        
+        if result == "You win!":
+            user_score += 1
+        elif result == "You lose!":
+            computer_score += 1
+
+if __name__ == "__main__":
+    main()
